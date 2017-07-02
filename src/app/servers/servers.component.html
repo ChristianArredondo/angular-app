@@ -1,12 +1,38 @@
 <label>Server Name</label>
+<!--<input type="text"-->
+       <!--class="form-control"-->
+  <!--(input)="onUpdateServerName($event)">-->
 <input type="text"
        class="form-control"
-  (input)="onUpdateServerName($event)">
-<p>{{ serverName }}</p>
+       [(ngModel)]="serverName">
+<!--<p><strong>Your server name will be: </strong>{{ serverName }}</p>-->
+<br>
+
 <button
   class="btn btn-primary"
   [disabled]="!allowNewServer"
   (click)="onCreateServer()">Add Server</button>
+<br>
+<br>
 <p>{{ serverCreationStatus }}</p>
+
 <app-server></app-server>
 <app-server></app-server>
+<hr>
+
+<h2>Mini - Assignment 2</h2>
+<label>Username</label>
+<input type="text"
+       class="form-control"
+       id="usernameText"
+       [(ngModel)]="username"
+        placeholder="Enter username">
+<br>
+<button
+class="btn btn-info"
+[disabled]="checkUsername()"
+(click)="resetUsername()">Reset Username!</button>
+<br>
+<br>
+<p>Your username is: {{ username }}</p>
+<hr>
