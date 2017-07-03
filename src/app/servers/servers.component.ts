@@ -3,14 +3,26 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-servers',
   templateUrl: './servers.component.html',
-  styleUrls: ['./servers.component.css']
+  styleUrls: ['./servers.component.css'],
+  styles: [`
+    .hide {
+      display: none;
+    }
+    .whiteText {
+      color: white;
+    }
+  `]
 })
 export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCreationStatus = 'No server was created!';
   serverName = '';
   username = '';
-  serverCreated= false;
+  serverCreated = false;
+  servers = ['TestServer 1', 'TestServer 2', 'TestServer 3'];
+  showParagraph = false;
+  clicks = [];
+  numClicks = 0;
 
   constructor() {
     setTimeout(() => {
@@ -22,6 +34,7 @@ export class ServersComponent implements OnInit {
   }
   onCreateServer() {
     this.serverCreated = true;
+    this.servers.push(this.serverName);
     this.serverCreationStatus = 'Server was created! Your server name is: ' + this.serverName;
   }
   // onUpdateServerName(event: Event) {
@@ -38,5 +51,19 @@ export class ServersComponent implements OnInit {
   }
   resetUsername() {
     this.username = '';
+  }
+  toggleDisplay() {
+    this.numClicks += 1;
+    this.showParagraph = !this.showParagraph;
+    this.clicks.push('Click #' + this.numClicks + ' at ' + new Date());
+  }
+  getClickColor() {
+    // return this.numClicks >= 5 ? 'blue' : 'none';
+    if (this.numClicks >=5) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }
